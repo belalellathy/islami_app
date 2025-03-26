@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/Radio/item.dart';
 import 'package:islami_app/Radio/radio_tab.dart';
-import 'package:islami_app/tabs/quran.dart';
 import 'package:islami_app/theme/apptheme.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class radio extends StatefulWidget {
+  const radio({super.key});
+
 
 
   @override
@@ -35,8 +36,8 @@ class _radioState extends State<radio> {
           minWidth: MediaQuery.sizeOf(context).width*0.9,
           initialLabelIndex: selectedindex,
           totalSwitches: 2,
-          labels: ["Radio","Reciters"],
-          activeBgColor: [Apptheme.primary],
+          labels: const ["Radio","Reciters"],
+          activeBgColor: const [Apptheme.primary],
           inactiveBgColor: Apptheme.black.withOpacity(0.7),
           fontSize:16 ,
           inactiveFgColor: Colors.white,
@@ -48,19 +49,19 @@ class _radioState extends State<radio> {
           
           } ,
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         //Expanded(child:selectedindex==0? RadioTab(names[0]):Text("2",style: TextStyle(color: Colors.white),))
         Expanded(
          
           child: selectedindex==0?
         ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(height: 10,),
+          separatorBuilder: (context, index) => const SizedBox(height: 10,),
         itemCount: names.length,
           itemBuilder: (context,index){
             return RadioTab(names[index]);
           },
         ):  ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(height: 10,),
+          separatorBuilder: (context, index) => const SizedBox(height: 10,),
         itemCount: names.length,
           itemBuilder: (context,index){
             return RadioTab(Items[index]);

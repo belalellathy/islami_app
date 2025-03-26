@@ -4,7 +4,7 @@ import 'package:islami_app/theme/apptheme.dart';
 
 class RadioTab extends StatelessWidget {
 items item;
-RadioTab(this.item);
+RadioTab(this.item, {super.key});
   
 
   @override
@@ -21,7 +21,7 @@ RadioTab(this.item);
           child: Column(
             
             children: [
-              Text("${item.name}",style: TextStyle(
+              Text(item.name,style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
                 fontSize: 20
@@ -30,15 +30,15 @@ RadioTab(this.item);
               Stack(
                 alignment: Alignment.center,
                 children: [
-                Image.asset("${item.imagename}"),
+                Image.asset(item.imagename),
               
                 
           
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(onPressed: (){}, icon: Icon(Icons.play_arrow_rounded),iconSize:44 ,color: Colors.black,),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.volume_up_rounded),iconSize:30 ,color: Colors.black,),
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.play_arrow_rounded),iconSize:44 ,color: Colors.black,),
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.volume_up_rounded),iconSize:30 ,color: Colors.black,),
                   ],
                 )
               ],)

@@ -1,0 +1,2 @@
+C:/Users/BLAL/StudioProjects/Islami_app/android/app/.cxx/Debug/3c4i18a4/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/BLAL/StudioProjects/Islami_app/android/app/.cxx/Debug/3c4i18a4/arm64-v8a/CMakeFiles/rebuild_cache.dir

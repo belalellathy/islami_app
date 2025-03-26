@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Hadeth extends StatelessWidget {
+  const Hadeth({super.key});
+
 
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("data"),);
+    return const Center(child: Text("data"),);
   }
 }
