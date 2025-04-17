@@ -397,7 +397,7 @@ late int no;
             ),
             Expanded(
               flex: 22,
-              child:Ayat.isEmpty?LoadingIndicator():
+              child:Ayat.isEmpty?const LoadingIndicator():
               ListView.separated(
                 separatorBuilder: (_, __) => const SizedBox(height: 10,),
                 itemCount: Ayat.length,

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:islami_app/tabs/Quran/most_recent.dart';
+import 'package:islami_app/tabs/Quran/most_recent_suras.dart';
 
 import 'package:islami_app/theme/apptheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Quran extends StatefulWidget {
-  Quran({super.key});
+  const Quran({super.key});
 
   @override
   State<Quran> createState() => _QuranState();
@@ -365,14 +368,13 @@ List<String> AyaNumber = [
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Apptheme.black.withOpacity(0.7),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        color: Apptheme.black.withOpacity(0.7),
         child: Column(
           children: [
             Container(
-          //   margin: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
@@ -410,66 +412,90 @@ List<String> AyaNumber = [
                 
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: Column(
+            const SizedBox(height: 10,),
+            
+            
+            Flexible(
+              child: ListView(
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min, 
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      MostRecent(englishQuranSurahs: englishQuranSurahs,arabicQuranSurahs: arabicsuranames,ayat: AyaNumber,),
+                      const SizedBox(
+                                  height: 20,
+                          ),
                       const Text("Sura List",style: TextStyle(
                         color: Apptheme.white,
                         fontSize: 16
                       ),),
-                      Expanded(child: ListView.separated(itemBuilder: (_,index){
+                      searchresultindex.isEmpty? const Center(child: Text("No Sura found",style: TextStyle(color: Apptheme.white),),): ListView.separated(
+                       shrinkWrap: true,  // <-- Needed for nested ListView
+                        physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (_,index){
+                      return searchresultindex.contains(index)? InkWell(
+                                onTap: () async {
+                                
+                                await Navigator.of(context).pushNamed("Suradetail",
+                                          arguments: index  );
+                                            
+                                  if(!MostRecentSuras.MostRecentSurasindex.contains(index)&& MostRecentSuras.MostRecentSurasindex.length<5){
+                                        MostRecentSuras.MostRecentSurasindex.add(index);
+                                        MostRecentSuras.saveMostRecentSuras();
+                                  }else if(MostRecentSuras.MostRecentSurasindex.length==5){
+                                        MostRecentSuras.MostRecentSurasindex.clear();
+                                        MostRecentSuras.MostRecentSurasindex.add(index);
+                                        MostRecentSuras.saveMostRecentSuras();
+                                    
+                                  }
+                                            setState(() {
                       
-                        return searchresultindex.contains(index)? InkWell(
-              onTap: () {
-                      print(index);
-                      Navigator.of(context).pushNamed("Suradetail",
-                    arguments: index  ); },
-              child: Row(
-              
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(image:AssetImage("assets/images/arabic-art-svgrepo-com 1.png") )
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text("${index+1}",style: const TextStyle(
-                      fontSize: 16,
-                      color:Apptheme.white 
-                    ),),
-                  )),
-                const SizedBox(width: 10,),
-                Column(
-                  children: [
-                    Text(englishQuranSurahs[index],style: const TextStyle(
-              color: Apptheme.white,
-              fontSize: 16)),
-                    Text("${AyaNumber[index]}verses",style: const TextStyle(
-              color: Apptheme.white,
-              fontSize: 16))
-                  ],
-                )
-              ,const Spacer() ,Text(arabicsuranames[index],style: const TextStyle(
-              color: Apptheme.white,
-              fontSize: 16))
-              ],
-                        ),
-                        ): SizedBox();
-                        }, 
-                      separatorBuilder:(_,index)=>searchresultindex.contains(index)?const Divider(
-                        color: Apptheme.white,
-                        thickness: 1,
-                        endIndent: 20,
-                        indent: 20,
-                      ):SizedBox(), 
-                      itemCount: arabicsuranames.length)
-                    )
+                                            });
+                                            },
+                                child: Row(
+                                
+                                children: [
+                                  Container(
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(image:AssetImage("assets/images/arabic-art-svgrepo-com 1.png") )
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16),
+                                          child: Text("${index+1}",style: const TextStyle(
+                                            fontSize: 16,
+                                            color:Apptheme.white 
+                                          ),),
+                                        )),
+                                  const SizedBox(width: 10,),
+                                  Column(
+                                        children: [
+                                          Text(englishQuranSurahs[index],style: const TextStyle(
+                                color: Apptheme.white,
+                                fontSize: 16)),
+                                          Text("${AyaNumber[index]}verses",style: const TextStyle(
+                                color: Apptheme.white,
+                                fontSize: 16))
+                                        ],
+                                  )
+                                ,const Spacer() ,Text(arabicsuranames[index],style: const TextStyle(
+                                color: Apptheme.white,
+                                fontSize: 16))
+                                ],
+                      ),
+                      ): const SizedBox();
+                      }, 
+                                            separatorBuilder:(_,index)=>searchresultindex.contains(index)?const Divider(
+                      color: Apptheme.white,
+                      thickness: 1,
+                      endIndent: 20,
+                      indent: 20,
+                                            ):const SizedBox(), 
+                                            itemCount: arabicsuranames.length)
                     ],
                   ),
+                ],
+              ),
             )
             
           ],
@@ -478,7 +504,7 @@ List<String> AyaNumber = [
     );
   }
 
-  List<int>searchresultindex=List.generate(1114, (index) => index,);
+  List<int>searchresultindex=List.generate(114, (index) => index,);
 
   void searchsuraname(String query){
   

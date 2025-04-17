@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:islami_app/tabs/hadeth.dart';
+import 'package:islami_app/hadeeth/hadeth.dart';
 import 'package:islami_app/tabs/Quran/quran.dart';
 import 'package:islami_app/Radio/radio.dart';
 import 'package:islami_app/tabs/sebha.dart';
@@ -18,24 +18,25 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 int selectindex=0;
 List<Widget>tabs=[
-Quran(),
+const Quran(),
 const Hadeth(),
 const Sebha(),
-const radio(),
-const Time()
+// radio(),
+// Time()
 ];
 List<String>images=[
   "assets/images/taj-mahal-agra-india.jpg",
   "assets/images/Background (1).png",
   "assets/images/Background (1).png",
-  "assets/images/silhouette-woman-reading-quran.jpg",
-  "assets/images/Background (1).png",
+ // "assets/images/silhouette-woman-reading-quran.jpg",
+  //"assets/images/Background (1).png",
 
 ];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Scaffold(
         body:
          Container(
@@ -84,7 +85,7 @@ List<String>images=[
               decoration: BoxDecoration(color: Apptheme.black.withOpacity(0.5),borderRadius: BorderRadius.circular(66)),
             child: SvgPicture.asset("assets/icons/necklace-islam-svgrepo-com 1.svg",colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn))),
           label: "sebha"),
-          BottomNavigationBarItem(icon: SvgPicture.asset("assets/icons/radio-svgrepo-com 1.svg",),
+     /*     BottomNavigationBarItem(icon: SvgPicture.asset("assets/icons/radio-svgrepo-com 1.svg",),
           activeIcon: Container(padding: const EdgeInsets.symmetric(vertical: 6,horizontal: 12),
               decoration: BoxDecoration(color: Apptheme.black.withOpacity(0.5),borderRadius: BorderRadius.circular(66)),
             child: SvgPicture.asset("assets/icons/radio-svgrepo-com 1.svg",colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn))),
@@ -93,7 +94,7 @@ List<String>images=[
           activeIcon: Container(padding: const EdgeInsets.symmetric(vertical: 6,horizontal: 12),
               decoration: BoxDecoration(color: Apptheme.black.withOpacity(0.5),borderRadius: BorderRadius.circular(66)),
             child: SvgPicture.asset("assets/icons/Vector-1.svg",colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn))),
-          label: "Time")
+          label: "Time")*/
         ]),
       ),
     );
