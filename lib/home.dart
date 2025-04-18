@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami_app/hadeeth/hadeth.dart';
 import 'package:islami_app/tabs/Quran/quran.dart';
-import 'package:islami_app/Radio/radio.dart';
 import 'package:islami_app/tabs/sebha.dart';
-import 'package:islami_app/tabs/time.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class Home extends StatefulWidget {

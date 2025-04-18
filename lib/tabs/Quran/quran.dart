@@ -4,7 +4,6 @@ import 'package:islami_app/tabs/Quran/most_recent.dart';
 import 'package:islami_app/tabs/Quran/most_recent_suras.dart';
 
 import 'package:islami_app/theme/apptheme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Quran extends StatefulWidget {
   const Quran({super.key});
