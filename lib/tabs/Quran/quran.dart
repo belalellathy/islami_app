@@ -13,8 +13,7 @@ class Quran extends StatefulWidget {
 }
 
 class _QuranState extends State<Quran> {
-      List<String>arabicsuranames=[
-    
+  List<String> arabicsuranames = [
     "الفاتحه",
     "البقرة",
     "آل عمران",
@@ -131,7 +130,7 @@ class _QuranState extends State<Quran> {
     "الناس"
   ];
 
-List<String> englishQuranSurahs = [
+  List<String> englishQuranSurahs = [
     "Al-Fatiha",
     "Al-Baqarah",
     "Aal-E-Imran",
@@ -248,7 +247,7 @@ List<String> englishQuranSurahs = [
     "An-Nas"
   ];
 
-List<String> AyaNumber = [
+  List<String> AyaNumber = [
     '7',
     '286',
     '200',
@@ -375,145 +374,174 @@ List<String> AyaNumber = [
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: Apptheme.primary,
-                  width: 1
-                )
-                
-              ),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Apptheme.primary, width: 1)),
               child: TextField(
-                style: const TextStyle(
-                  color: Apptheme.white
-                ),
-                onChanged: (value){
+                style: const TextStyle(color: Apptheme.white),
+                onChanged: (value) {
                   searchsuraname(value);
-                  setState(() {
-                    
-                  });
-                  
+                  setState(() {});
                 },
-                
                 decoration: InputDecoration(
-                  
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset("assets/icons/Vector.svg",colorFilter: const ColorFilter.mode(Apptheme.primary, BlendMode.srcIn),width: 24,height: 24,),
-                  ),
-                  hintText: "Sura Name",
-                  hintStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xffFEFFE8)
-                  ),
-                  border: InputBorder.none
-                ),
-                
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        "assets/icons/Vector.svg",
+                        colorFilter: const ColorFilter.mode(
+                            Apptheme.primary, BlendMode.srcIn),
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                    hintText: "Sura Name",
+                    hintStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xffFEFFE8)),
+                    border: InputBorder.none),
               ),
             ),
-            const SizedBox(height: 10,),
-            
-            
+            const SizedBox(
+              height: 10,
+            ),
             Flexible(
               child: ListView(
                 children: [
                   Column(
-                    mainAxisSize: MainAxisSize.min, 
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      MostRecent(englishQuranSurahs: englishQuranSurahs,arabicQuranSurahs: arabicsuranames,ayat: AyaNumber,),
-                      const SizedBox(
-                                  height: 20,
-                          ),
-                      const Text("Sura List",style: TextStyle(
-                        color: Apptheme.white,
-                        fontSize: 16
-                      ),),
-                      searchresultindex.isEmpty? const Center(child: Text("No Sura found",style: TextStyle(color: Apptheme.white),),): ListView.separated(
-                       shrinkWrap: true,  // <-- Needed for nested ListView
-                        physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (_,index){
-                      return searchresultindex.contains(index)? InkWell(
-                                onTap: () async {
-                                
-                                await Navigator.of(context).pushNamed("Suradetail",
-                                          arguments: index  );
-                                            
-                                  if(!MostRecentSuras.MostRecentSurasindex.contains(index)&& MostRecentSuras.MostRecentSurasindex.length<5){
-                                        MostRecentSuras.MostRecentSurasindex.add(index);
-                                        MostRecentSuras.saveMostRecentSuras();
-                                  }else if(MostRecentSuras.MostRecentSurasindex.length==5){
-                                        MostRecentSuras.MostRecentSurasindex.clear();
-                                        MostRecentSuras.MostRecentSurasindex.add(index);
-                                        MostRecentSuras.saveMostRecentSuras();
-                                    
-                                  }
-                                            setState(() {
-                      
-                                            });
-                                            },
-                                child: Row(
-                                
-                                children: [
-                                  Container(
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(image:AssetImage("assets/images/arabic-art-svgrepo-com 1.png") )
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(16),
-                                          child: Text("${index+1}",style: const TextStyle(
-                                            fontSize: 16,
-                                            color:Apptheme.white 
-                                          ),),
-                                        )),
-                                  const SizedBox(width: 10,),
-                                  Column(
-                                        children: [
-                                          Text(englishQuranSurahs[index],style: const TextStyle(
-                                color: Apptheme.white,
-                                fontSize: 16)),
-                                          Text("${AyaNumber[index]}verses",style: const TextStyle(
-                                color: Apptheme.white,
-                                fontSize: 16))
-                                        ],
-                                  )
-                                ,const Spacer() ,Text(arabicsuranames[index],style: const TextStyle(
-                                color: Apptheme.white,
-                                fontSize: 16))
-                                ],
+                      MostRecent(
+                        englishQuranSurahs: englishQuranSurahs,
+                        arabicQuranSurahs: arabicsuranames,
+                        ayat: AyaNumber,
                       ),
-                      ): const SizedBox();
-                      }, 
-                                            separatorBuilder:(_,index)=>searchresultindex.contains(index)?const Divider(
-                      color: Apptheme.white,
-                      thickness: 1,
-                      endIndent: 20,
-                      indent: 20,
-                                            ):const SizedBox(), 
-                                            itemCount: arabicsuranames.length)
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Sura List",
+                        style: TextStyle(color: Apptheme.white, fontSize: 16),
+                      ),
+                      searchresultindex.isEmpty
+                          ? const Center(
+                              child: Text(
+                                "No Sura found",
+                                style: TextStyle(color: Apptheme.white),
+                              ),
+                            )
+                          : ListView.separated(
+                              shrinkWrap:
+                                  true, // <-- Needed for nested ListView
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (_, index) {
+                                return searchresultindex.contains(index)
+                                    ? InkWell(
+                                        onTap: () async {
+                                          await Navigator.of(context).pushNamed(
+                                              "Suradetail",
+                                              arguments: index);
+
+                                          if (!MostRecentSuras
+                                                      .MostRecentSurasindex
+                                                  .contains(index) &&
+                                              MostRecentSuras
+                                                      .MostRecentSurasindex
+                                                      .length <
+                                                  5) {
+                                            MostRecentSuras.MostRecentSurasindex
+                                                .add(index);
+                                            MostRecentSuras
+                                                .saveMostRecentSuras();
+                                          } else if (MostRecentSuras
+                                                  .MostRecentSurasindex
+                                                  .length ==
+                                              5) {
+                                            MostRecentSuras.MostRecentSurasindex
+                                                .clear();
+                                            MostRecentSuras.MostRecentSurasindex
+                                                .add(index);
+                                            MostRecentSuras
+                                                .saveMostRecentSuras();
+                                          }
+                                          setState(() {});
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                decoration: const BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            "assets/images/arabic-art-svgrepo-com 1.png"))),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                  child: Text(
+                                                    "${index + 1}",
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        color: Apptheme.white),
+                                                  ),
+                                                )),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Column(
+                                              children: [
+                                                Text(englishQuranSurahs[index],
+                                                    style: const TextStyle(
+                                                        color: Apptheme.white,
+                                                        fontSize: 16)),
+                                                Text(
+                                                    "${AyaNumber[index]}verses",
+                                                    style: const TextStyle(
+                                                        color: Apptheme.white,
+                                                        fontSize: 16))
+                                              ],
+                                            ),
+                                            const Spacer(),
+                                            Text(arabicsuranames[index],
+                                                style: const TextStyle(
+                                                    color: Apptheme.white,
+                                                    fontSize: 16))
+                                          ],
+                                        ),
+                                      )
+                                    : const SizedBox();
+                              },
+                              separatorBuilder: (_, index) =>
+                                  searchresultindex.contains(index)
+                                      ? const Divider(
+                                          color: Apptheme.white,
+                                          thickness: 1,
+                                          endIndent: 20,
+                                          indent: 20,
+                                        )
+                                      : const SizedBox(),
+                              itemCount: arabicsuranames.length)
                     ],
                   ),
                 ],
               ),
             )
-            
           ],
         ),
       ),
     );
   }
 
-  List<int>searchresultindex=List.generate(114, (index) => index,);
+  List<int> searchresultindex = List.generate(
+    114,
+    (index) => index,
+  );
 
-  void searchsuraname(String query){
-  
+  void searchsuraname(String query) {
     searchresultindex.clear();
-    for(int i=0;i<114;i++){
-      if(englishQuranSurahs[i].toLowerCase().contains(query.toLowerCase())||arabicsuranames[i].contains(query)){
+    for (int i = 0; i < 114; i++) {
+      if (englishQuranSurahs[i].toLowerCase().contains(query.toLowerCase()) ||
+          arabicsuranames[i].contains(query)) {
         searchresultindex.add(i);
-
+      }
     }
-
-  }
   }
 }

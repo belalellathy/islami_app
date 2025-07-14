@@ -11,8 +11,7 @@ class SuraDetail extends StatefulWidget {
 }
 
 class _SuraDetailState extends State<SuraDetail> {
-    List<String>arabicsuranames=[
-    
+  List<String> arabicsuranames = [
     "الفاتحه",
     "البقرة",
     "آل عمران",
@@ -129,7 +128,7 @@ class _SuraDetailState extends State<SuraDetail> {
     "الناس"
   ];
 
-List<String> englishQuranSurahs = [
+  List<String> englishQuranSurahs = [
     "Al-Fatiha",
     "Al-Baqarah",
     "Aal-E-Imran",
@@ -246,7 +245,7 @@ List<String> englishQuranSurahs = [
     "An-Nas"
   ];
 
-List<String> AyaNumber = [
+  List<String> AyaNumber = [
     '7',
     '286',
     '200',
@@ -363,20 +362,22 @@ List<String> AyaNumber = [
     '6'
   ];
 
-List<String>Ayat=[];
+  List<String> Ayat = [];
 
-late int no;
+  late int no;
 
   @override
   Widget build(BuildContext context) {
-    int numm=ModalRoute.of(context)!.settings.arguments as int;
-    
-    no=numm;
-    if(Ayat.isEmpty){ loadfile();}
+    int numm = ModalRoute.of(context)!.settings.arguments as int;
+
+    no = numm;
+    if (Ayat.isEmpty) {
+      loadfile();
+    }
     return Scaffold(
       backgroundColor: Apptheme.black,
       appBar: AppBar(
-        title: Text(englishQuranSurahs[numm]),       
+        title: Text(englishQuranSurahs[numm]),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -386,45 +387,50 @@ late int no;
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset("assets/images/Mask group (2).png"),
-                Text("${arabicsuranames[numm]} ",style: const TextStyle(
-                  color: Apptheme.primary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700
-                ),),
+                Text(
+                  "${arabicsuranames[numm]} ",
+                  style: const TextStyle(
+                      color: Apptheme.primary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700),
+                ),
                 Image.asset("assets/images/Mask group (1).png")
               ],
-
             ),
             Expanded(
-              flex: 22,
-              child:Ayat.isEmpty?const LoadingIndicator():
-              ListView.separated(
-                separatorBuilder: (_, __) => const SizedBox(height: 10,),
-                itemCount: Ayat.length,
-                itemBuilder: (_,index)=>Padding(
-                  padding: const EdgeInsets.only(right:  16),
-                  child: Text("${Ayat[index]}[${index+1}]",style: const TextStyle(
-                    color: Apptheme.primary),
-                  textAlign: TextAlign.center,),
-                )
-              ) 
-            ),
-
+                flex: 22,
+                child: Ayat.isEmpty
+                    ? const LoadingIndicator()
+                    : ListView.separated(
+                        separatorBuilder: (_, __) => const SizedBox(
+                              height: 10,
+                            ),
+                        itemCount: Ayat.length,
+                        itemBuilder: (_, index) => Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(
+                                "${Ayat[index]}[${index + 1}]",
+                                style: const TextStyle(color: Apptheme.primary),
+                                textAlign: TextAlign.center,
+                              ),
+                            ))),
             const Spacer(),
-            Image.asset("assets/images/Mask group.png",width: double.infinity,fit: BoxFit.fill,)
+            Image.asset(
+              "assets/images/Mask group.png",
+              width: double.infinity,
+              fit: BoxFit.fill,
+            )
           ],
         ),
       ),
-
     );
   }
 
-  Future<void> loadfile()async{
-  String sura=await rootBundle.loadString("assets/text/Suras/${no+1}.txt");
-  Ayat= sura.split("\r\n");
-  print(Ayat.length);
-  setState(() {});
-
-
+  Future<void> loadfile() async {
+    String sura =
+        await rootBundle.loadString("assets/text/Suras/${no + 1}.txt");
+    Ayat = sura.split("\r\n");
+    print(Ayat.length);
+    setState(() {});
   }
 }
