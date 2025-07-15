@@ -24,10 +24,10 @@ class _HomeState extends State<Home> {
   ];
   List<String> images = [
     "assets/images/taj-mahal-agra-india.jpg",
-    "assets/images/Background (1).png",
-    "assets/images/Background (1).png",
+    "assets/images/Background.png",
+    "assets/images/Background.png",
     // "assets/images/silhouette-woman-reading-quran.jpg",
-    "assets/images/Background (1).png",
+    "assets/images/Background.png",
   ];
 
   @override
