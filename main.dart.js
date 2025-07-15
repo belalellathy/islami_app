@@ -82999,7 +82999,7 @@ A.ao4.prototype={
 $0(){},
 $S:0}
 A.pz.prototype={
-al(){var s="assets/images/Background (1).png"
+al(){var s="assets/images/Background.png"
 return new A.Tx(A.b([B.Oo,B.HC,B.P3,new A.D0(null)],t.D),A.b(["assets/images/taj-mahal-agra-india.jpg",s,s,s],t.s))}}
 A.Tx.prototype={
 O(a){var s,r,q,p,o,n,m,l=this,k=null,j="assets/icons/Vector.svg",i="assets/icons/book-album-svgrepo-com 1.svg",h="assets/icons/necklace-islam-svgrepo-com 1.svg",g="assets/icons/Vector-1.svg",f=A.avS(k,B.d_,new A.jO(l.f[l.d],k,k))
