@@ -23,6 +23,9 @@ class Run extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locationprovider locationprovider =
+        Provider.of<Locationprovider>(context, listen: false);
+    locationprovider.getlocation();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "Home",

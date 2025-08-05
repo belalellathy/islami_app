@@ -20,12 +20,8 @@ class _TimeState extends State<Time> {
   
   @override
   Widget build(BuildContext context) {
-    Locationprovider locationprovider = Provider.of<Locationprovider>(context, listen: false);
-    locationprovider.getlocation();
-    locationprovider.getlocationname();
-    print("city ${locationprovider.city}");
-    print("country ${locationprovider.country}");
-    print("location  ${locationprovider.locationData?.latitude} ${locationprovider.locationData?.longitude}");
+    Locationprovider locationprovider =
+        Provider.of<Locationprovider>(context, listen: false);
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(16),
