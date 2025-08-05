@@ -1,20 +1,28 @@
 import 'dart:convert';
 
+
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:islami_app/API_model/prayerresponsemodel/prayerresponsemodel.dart';
-import 'package:islami_app/API_model/prayerresponsemodel/timings.dart';
+
+
 
 class APIManager {
-  static Future<Prayerresponsemodel> getpraytime() async {
-    
+  
+  
+
+  static Future<Prayerresponsemodel> getpraytime({required String city, required String country}) async {
+
       var date = DateFormat("dd-MM-yyyy").format(DateTime.now());
 
       Uri uri = Uri.parse(
-          "https://api.aladhan.com/v1/timingsByCity/$date?city=cairo&country=egypt");
+          "https://api.aladhan.com/v1/timingsByCity/$date?city=$city&country=$country");
       var response = await http.get(uri);
       Map<String,dynamic> jsondecode = jsonDecode(response.body);
       return Prayerresponsemodel.fromJson(jsondecode);
-    
+      
+
   }
+
+
 }

@@ -3,7 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_app/API_model/API_manger/api_manger.dart';
 import 'package:islami_app/API_model/prayerresponsemodel/prayerresponsemodel.dart';
+import 'package:islami_app/providers/LocationProvide.dart';
 import 'package:islami_app/tabs/time/time_item.dart';
+import 'package:provider/provider.dart';
+
+
 
 class Time extends StatefulWidget {
   const Time({super.key});
@@ -13,8 +17,15 @@ class Time extends StatefulWidget {
 }
 
 class _TimeState extends State<Time> {
+  
   @override
   Widget build(BuildContext context) {
+    Locationprovider locationprovider = Provider.of<Locationprovider>(context, listen: false);
+    locationprovider.getlocation();
+    locationprovider.getlocationname();
+    print("city ${locationprovider.city}");
+    print("country ${locationprovider.country}");
+    print("location  ${locationprovider.locationData?.latitude} ${locationprovider.locationData?.longitude}");
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -28,9 +39,8 @@ class _TimeState extends State<Time> {
                 borderRadius: BorderRadius.circular(40),
                 color: Color(0xff856B3F),
                 image: DecorationImage(image: AssetImage("assets/images/praytime.png"),fit: BoxFit.fill)
-               
               ),
-              child: FutureBuilder<Prayerresponsemodel>(future: APIManager.getpraytime(), builder: (context,snapshot){
+              child: FutureBuilder<Prayerresponsemodel>(future: APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt"), builder: (context,snapshot){
                 if(snapshot.connectionState==ConnectionState.waiting){
                   return Center(child: CircularProgressIndicator(color: Colors.white,),);
 
@@ -38,9 +48,8 @@ class _TimeState extends State<Time> {
                   
                   return Column(
                     children: [
-                      
                       Text("Error occured${snapshot.error}",style: TextStyle(color:Colors.red ),),
-                      ElevatedButton(onPressed: (){APIManager.getpraytime();
+                      ElevatedButton(onPressed: (){APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt");
                       setState(() {
                         
                       });}, child: Text("Try Again"))
@@ -69,26 +78,26 @@ class _TimeState extends State<Time> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          AutoSizeText("${data.data!.date!.gregorian!.day!}-${data.data!.date!.gregorian!.month!.en!}\n${data.data!.date!.gregorian!.year!}",style: TextStyle(
+                          AutoSizeText("${data.data!.date!.gregorian!.day!}-${data.data!.date!.gregorian!.month!.en!}\n${data.data!.date!.gregorian!.year!}",style:const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w700
                           ),),
                           Column(
                             children: [
-                              AutoSizeText("pray Time",style: TextStyle(
+                            const  AutoSizeText("pray Time",style:  TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.w700
                           ),),
-                              AutoSizeText(data.data!.date!.gregorian!.weekday!.en!,style: TextStyle(
+                              AutoSizeText(data.data!.date!.gregorian!.weekday!.en!,style: const TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.w600
                           ),)
                             ],
                           ),
-                           AutoSizeText("${data.data!.date!.hijri!.day!}-${editedmo}\n${data.data!.date!.hijri!.year!}",style: TextStyle(
+                           AutoSizeText("${data.data!.date!.hijri!.day!}-${editedmo}\n${data.data!.date!.hijri!.year!}",style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w700

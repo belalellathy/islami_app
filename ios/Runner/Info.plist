@@ -47,5 +47,14 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>We need your location to provide accurate prayer times.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>We need your location to provide accurate prayer times even when the app is in the background.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>We need your location to provide accurate prayer times even when the app is not in use.</string>
+		<key>UIBackgroundModes</key>
+		<string>location</string>
+
 	</dict>
 </plist>
