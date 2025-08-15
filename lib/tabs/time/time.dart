@@ -29,14 +29,14 @@ class _TimeState extends State<Time> {
         child: Column(
           children: [
             Container(
-              width: double.infinity,
+              width: size.width*1.2,
               height: size.height*0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: Color(0xff856B3F),
                 image: DecorationImage(image: AssetImage("assets/images/praytime.png"),fit: BoxFit.fill)
               ),
-              child: FutureBuilder<Prayerresponsemodel>(future: APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt"), builder: (context,snapshot){
+              child: FutureBuilder<Prayerresponsemodel>(future: APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt",street: locationprovider.street??""), builder: (context,snapshot){
                 if(snapshot.connectionState==ConnectionState.waiting){
                   return Center(child: CircularProgressIndicator(color: Colors.white,),);
 
@@ -45,7 +45,7 @@ class _TimeState extends State<Time> {
                   return Column(
                     children: [
                       Text("Error occured${snapshot.error}",style: TextStyle(color:Colors.red ),),
-                      ElevatedButton(onPressed: (){APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt");
+                      ElevatedButton(onPressed: (){APIManager.getpraytime(city: locationprovider.city??"cairo", country: locationprovider.country??"egypt",street: locationprovider.street??"");
                       setState(() {
                         
                       });}, child: Text("Try Again"))
@@ -53,27 +53,27 @@ class _TimeState extends State<Time> {
                     ],
                   );
                 }else{Prayerresponsemodel data=snapshot.data!;
-                Map<String,dynamic>prayertimes = data.data!.timings!.toJson();
-                print(prayertimes);
+                
+              
                 String mo = data.data!.date!.hijri!.month!.en!;
+                
                 String editedmo=mo.substring(0,3);
                 
                
-                return Container(
-                  width: double.infinity,
+                return Center(
                   child: Stack(
                     children: [
                     
                      Positioned(
-                      top: 10,
+                      top: 11,
                       left: 0,
-                      right: 0,
+                      right: 2,
                       bottom: 0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
+                                    
                           AutoSizeText("${data.data!.date!.gregorian!.day!}-${data.data!.date!.gregorian!.month!.en!}\n${data.data!.date!.gregorian!.year!}",style:const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
@@ -104,12 +104,12 @@ class _TimeState extends State<Time> {
                         top: 70,
                         left: 0,
                         right: 0,
-                        bottom: 30,
+                        bottom: 50,
                         child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Center(child:CarouselSlider.builder(
-                            options: CarouselOptions(enlargeFactor: 0.3,
-                                      enlargeCenterPage: true,
+                          padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 25),
+                          child: CarouselSlider.builder(
+                            options: CarouselOptions(
+                                      //enlargeCenterPage: true,
                                       initialPage: 0,),
                             itemCount: 5,
                             itemBuilder: (_, index, __) {
@@ -117,10 +117,10 @@ class _TimeState extends State<Time> {
                               
                             },
                            
-                            ) ,),
+                            ),
                         )
                           )
-
+                                    
                     ],
                   ),
                 );}

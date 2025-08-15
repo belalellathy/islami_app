@@ -6,6 +6,7 @@ class Locationprovider with ChangeNotifier {
   LocationData? locationData;
   String? city;
   String? country;
+  String? street;
 
   Future<bool> checklocationenabled()async{
 
@@ -55,9 +56,11 @@ class Locationprovider with ChangeNotifier {
       geocoding.Placemark place = placemarks.first;
       city = place.subAdministrativeArea ?? '';
       country = place.country ?? '';
-     
+      street=place.street??" ";
+     print(street);
 
     }
+    print(city);
     }
 
   

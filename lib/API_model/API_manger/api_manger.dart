@@ -11,12 +11,12 @@ class APIManager {
   
   
 
-  static Future<Prayerresponsemodel> getpraytime({required String city, required String country}) async {
+  static Future<Prayerresponsemodel> getpraytime({required String city, required String country,required String street}) async {
 
       var date = DateFormat("dd-MM-yyyy").format(DateTime.now());
 
       Uri uri = Uri.parse(
-          "https://api.aladhan.com/v1/timingsByCity/$date?city=$city&country=$country");
+          "https://api.aladhan.com/v1/timingsByCity/$date?city=$city,$street&country=$country");
       var response = await http.get(uri);
       Map<String,dynamic> jsondecode = jsonDecode(response.body);
       return Prayerresponsemodel.fromJson(jsondecode);

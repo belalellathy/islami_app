@@ -30,7 +30,7 @@ String formatTo12Hour(String time) {
   List<String> formattedTimes = time.map((t) => formatTo12Hour(t)).toList();
 
     return Container(
-     width: double.infinity,
+     width: MediaQuery.of(context).size.width*0.6,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         gradient: LinearGradient(colors: [
