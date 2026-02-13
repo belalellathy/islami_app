@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/API_model/API_manger/api_manger.dart';
+import 'package:islami_app/API_model/radioresponsemodel/radioresponsemodel.dart';
+import 'package:islami_app/API_model/receitersresponsemodel/receitersresponsemodel.dart';
+import 'package:islami_app/Radio/Receiters.dart';
 import 'package:islami_app/Radio/item.dart';
 import 'package:islami_app/Radio/radio_tab.dart';
 import 'package:islami_app/theme/apptheme.dart';
@@ -12,25 +16,6 @@ class radio extends StatefulWidget {
 }
 
 class _radioState extends State<radio> {
-  List<items> names = [
-    items(
-        name: "Radio Ibrahim Al-Akdar",
-        imagename: "assets/images/Mosque-02.png"),
-    items(
-        name: "Radio Al-Qaria Yassen",
-        imagename: "assets/images/Mosque-02.png"),
-    items(
-        name: "Radio Ahmed Al-trabulsi",
-        imagename: "assets/images/Mosque-02.png"),
-  ];
-  List<items> Items = [
-    items(name: "Ibrahim Al-Akdar", imagename: "assets/images/Mosque-02.png"),
-    items(name: "Akram Alalaqmi", imagename: "assets/images/Mosque-02.png"),
-    items(name: "Majed Al-Enezi", imagename: "assets/images/Mosque-02.png"),
-    items(
-        name: "Malik shaibat Alhamed",
-        imagename: "assets/images/Mosque-02.png"),
-  ];
   int? selectedindex = 0;
   @override
   Widget build(BuildContext context) {
@@ -55,19 +40,75 @@ class _radioState extends State<radio> {
         const SizedBox(
           height: 20,
         ),
-        //Expanded(child:selectedindex==0? RadioTab(names[0]):Text("2",style: TextStyle(color: Colors.white),))
         Expanded(
             child: selectedindex == 0
-                ? ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 10,
-                    ),
-                    itemCount: names.length,
-                    itemBuilder: (context, index) {
-                      return RadioTab(names[index]);
+                ? FutureBuilder<Radioresponsemodel>(
+                    future: APIManager.getradio(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                            child: CircularProgressIndicator(
+                          color: Apptheme.primary,
+                        ));
+                      } else if (snapshot.hasError) {
+                        return Column(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  APIManager.getradio();
+                                  setState(() {});
+                                },
+                                child: const Text("Try Again")),
+                          ],
+                        );
+                      } else {
+                        final radios = snapshot.data!.radios;
+                        return ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 10,
+                          ),
+                          itemCount: radios!.length,
+                          itemBuilder: (context, index) {
+                            return RadioTab(items(
+                                name: radios[index].name!,
+                                url: radios[index].url!));
+                          },
+                        );
+                      }
                     },
                   )
-                : ListView.separated(
+                : FutureBuilder<Receitersresponsemodel>(future: APIManager.getreciters() ,
+                builder:(context,index){
+                  if (index.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: Apptheme.primary,
+                    ));
+                  } else if (index.hasError) {
+                    return Column(
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              APIManager.getreciters();
+                              setState(() {});
+                            },
+                            child: const Text("Try Again")),
+                      ],
+                    );
+                  } else {
+                    final reciters = index.data!.reciters;
+                    return ListView.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 10,
+                      ),
+                      itemCount: reciters!.length,
+                      itemBuilder: (context, index) {
+                        return Receiters(name: reciters[index].name!,index: index,);
+                      },
+                    );
+                }
+              },
+            ) /*ListView.separated(
                     separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
@@ -75,7 +116,8 @@ class _radioState extends State<radio> {
                     itemBuilder: (context, index) {
                       return RadioTab(Items[index]);
                     },
-                  ))
+                  )*/
+            )
       ],
     );
   }

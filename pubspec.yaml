@@ -48,6 +48,7 @@ dependencies:
   location: ^8.0.1
   geocoding: ^4.0.0
   provider: ^6.1.5
+  just_audio: ^0.10.5
  
 
 dev_dependencies:
@@ -79,6 +80,7 @@ flutter:
     - assets/icons/
     - assets/text/Suras/
     - assets/text/Hadeeth/
+    - assets/text/azkar/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
