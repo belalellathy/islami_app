@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/Radio/ReceitersList.dart';
 import 'package:islami_app/home.dart';
 import 'package:islami_app/providers/LocationProvide.dart';
 import 'package:islami_app/tabs/Quran/most_recent_suras.dart';
@@ -32,6 +33,7 @@ class Run extends StatelessWidget {
       routes: {
         "Home": (context) => const Home(),
         "Suradetail": (context) => const SuraDetail(),
+        "receiterslist": (context) => const Receiterslist(),
       },
       theme: Apptheme.lightTheme,
       darkTheme: Apptheme.darkTheme,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:islami_app/hadeeth/hadeth.dart';
+
 import 'package:islami_app/hadeeth/hadeth_data.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
@@ -26,7 +26,7 @@ class _HadethItemState extends State<HadethItem> {
       height: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-          image: DecorationImage(
+          image: const DecorationImage(
               image: AssetImage(
                 "assets/images/HadithCardBackGroundWhite.png",
               ),
@@ -37,7 +37,7 @@ class _HadethItemState extends State<HadethItem> {
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, top: 12, bottom: 2),
         child: hadethData == null
-            ? Center(child: const CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
                   Row(
@@ -68,7 +68,7 @@ class _HadethItemState extends State<HadethItem> {
                                 "${hadethData!.content[index]}",
                                 textAlign: TextAlign.center,
                               ),
-                          separatorBuilder: (_, __) => SizedBox(
+                          separatorBuilder: (_, __) => const SizedBox(
                                 height: 4,
                               ),
                           itemCount: hadethData!.content.length)),

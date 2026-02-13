@@ -25,9 +25,7 @@ class _SebhaState extends State<Sebha> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-            child:
-                Image.asset("assets/images/سَبِّحِ اسْمَ رَبِّكَ الأعلى.png")),
+        Expanded(child: Image.asset("assets/images/sebhaimage.png")),
         Expanded(
           flex: 5,
           child: Container(

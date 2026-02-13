@@ -9,9 +9,9 @@ class MostRecent extends StatefulWidget {
       required this.englishQuranSurahs,
       required this.arabicQuranSurahs,
       required this.ayat});
-  List<String> englishQuranSurahs = [];
-  List<String> arabicQuranSurahs = [];
-  List<String> ayat = [];
+  final List<String> englishQuranSurahs;
+  final List<String> arabicQuranSurahs;
+  final List<String> ayat;
 
   @override
   State<MostRecent> createState() => _MostRecentState();
