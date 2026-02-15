@@ -16,3 +16,6 @@ Provider (State Management)
 Local JSON & Assets
 Rest API
 
+
+video for the app running : https://drive.google.com/drive/folders/13gOgFS2ziLr_fldb24L9_1rQSAiG2koR?usp=sharing
+
