@@ -32,6 +32,14 @@ class _HomeState extends State<Home> {
   ];
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    for (String image in images) {
+      precacheImage(AssetImage(image), context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,

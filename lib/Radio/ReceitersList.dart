@@ -140,8 +140,10 @@ class _ReceiterslistState extends State<Receiterslist> {
         final reciters = snapshot.data!.reciters;
         return ListView.separated(
           separatorBuilder: (__, _) => const SizedBox(height: 10),
-          itemCount: reciters![args['index']]!.moshaf![args['index']].surahTotal!,
+          itemCount: reciters![args['index']]!.moshaf![0].surahTotal!,
+
           itemBuilder: (context, index) {
+            
             String formatedindex;
             index = index + 1;
             if(index<10){
@@ -154,7 +156,7 @@ class _ReceiterslistState extends State<Receiterslist> {
               else{
                 formatedindex = "${index+1}";
               }
-            return RadioTab(items(name: arabicsuranames[index-1], url: "${reciters[args['index']].moshaf![args['index']].server}${formatedindex}.mp3"));
+            return RadioTab(items(name: arabicsuranames[index-1], url: "${reciters[args['index']].moshaf![0].server}${formatedindex}.mp3"));
           },
         );
       }
