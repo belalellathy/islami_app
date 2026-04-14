@@ -4,8 +4,9 @@ class Apptheme {
   static const Color primary = Color(0xffE2BE7F);
   static const Color black = Colors.black;
   static const Color white = Colors.white;
-  static ThemeData lightTheme = ThemeData();
+  
   static ThemeData darkTheme = ThemeData(
+      scaffoldBackgroundColor: black,
       appBarTheme: const AppBarTheme(
           backgroundColor: black,
           foregroundColor: primary,

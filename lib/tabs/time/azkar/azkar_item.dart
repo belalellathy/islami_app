@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AzkarItem extends StatelessWidget {
-  AzkarItem({super.key});
+  const AzkarItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Placeholder();
   }
-
-  Future<void> loadazkar() async {}
-}
+} 
