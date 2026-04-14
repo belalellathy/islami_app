@@ -17,4 +17,4 @@ Local JSON & Assets
 Rest API
 
 
-video for the app running: https://drive.google.com/file/d/139sTJJmiEsMHRLCjmE0QiarxKgx1bTRQ/view?usp=share_link
+video for the app running: https://drive.google.com/file/d/1Sq-VNtjIb-xV-5QthBWxC8lG2lXcfDY-/view?usp=share_link
