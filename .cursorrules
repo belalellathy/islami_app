@@ -1,0 +1,79 @@
+# Islami App AI Assistant Rules (.cursorrules)
+
+You are an expert Flutter and Dart developer. When working on the **Islami App** codebase, adhere to the guidelines, architectures, and design principles outlined below.
+
+---
+
+## 1. Project Context & Stack
+*   **Language & SDK**: Dart (`sdk: ^3.5.4`), Flutter.
+*   **Application Theme**: Deeply customized dark-mode Islamic app.
+*   **State Management**: `Provider` (using `ChangeNotifier` and `ChangeNotifierProvider`).
+*   **Key Dependencies**:
+    *   `just_audio` (Audio playing & streaming for Reciters/Radio)
+    *   `location` & `geocoding` (User's location, city, country detection)
+    *   `http` (API integration for Radio/Reciters list)
+    *   `shared_preferences` (Local persistence, e.g. onboarding, history)
+    *   `flutter_svg` (Rendering vector icons/assets)
+    *   `introduction_screen` (Onboarding flows)
+
+---
+
+## 2. Directory Structure & Organization
+Maintain the established structure inside the `lib/` directory:
+*   `lib/main.dart` - Application entry point, initializing providers and local storage.
+*   `lib/home.dart` - Main dashboard wrapping the bottom navigation bar and tabs.
+*   `lib/tabs/` - Different screens/tabs of the app:
+    *   `lib/tabs/Quran/` - Suras list, Suras history, and Sura details.
+    *   `lib/tabs/sebha.dart` - Tasbeeh counter logic & visual.
+    *   `lib/tabs/time/` - Prayer times and Qibla.
+*   `lib/providers/` - State management controllers (e.g., `Locationprovider`).
+*   `lib/Radio/` - Quran Radio/Reciters widgets and playbacks.
+*   `lib/theme/` - Visual design tokens and themes (`apptheme.dart`).
+*   `lib/widgets/` - Reusable shared UI widgets (like indicators, dialogs, buttons).
+*   `lib/API_model/` - Data models for REST API interactions.
+
+---
+
+## 3. Design System & Theme Principles
+*   **Color Palette**: Strictly follow the design tokens in `Apptheme`:
+    *   `Apptheme.primary` -> Sand/Gold (`0xffE2BE7F`). Use for active items, borders, buttons, highlighting.
+    *   `Apptheme.black` -> Background color (`Colors.black`).
+    *   `Apptheme.white` -> Secondary highlights / white text (`Colors.white`).
+*   **Rule**: Never hardcode colors like `Colors.amber` or arbitrary hex codes in screens. Always reference the theme or `Apptheme`.
+*   **Dark Mode**: The application runs in dark mode by default (`ThemeMode.dark`). Ensure custom widgets fit seamlessly into a dark-background aesthetic.
+*   **Typography**: Keep text style definitions consistent with `Theme.of(context)` or custom text styles using clean, scalable typography.
+
+---
+
+## 4. Coding Standards & Best Practices
+### Dart
+*   **Patterns & Pattern Matching**: Use switch expressions and pattern matching where appropriate.
+*   **Sound Null Safety**: Avoid using force-unwraps (`!`) unless absolutely certain; instead, use safe navigation (`?.`) or conditional statements.
+*   **Lint Rules**: Ensure the code compiles cleanly and adheres to `analysis_options.yaml` (using `package:flutter_lints`).
+*   **Async Programming**: Use `async`/`await` for futures instead of nested `.then()` callbacks.
+
+### Flutter
+*   **Widgets Rebuild Optimization**: Always use `const` constructors where possible to reduce unnecessary widget rebuilds.
+*   **State Separation**: Keep UI widgets clean. Business logic, state manipulation, and asynchronous side effects (e.g., fetching APIs, accessing storage) must reside in a `ChangeNotifier` / `Provider` class.
+*   **Listening to Providers**:
+    *   In build methods: Use `context.watch<T>()` or `Consumer<T>()` for updates.
+    *   In buttons or lifecycle callbacks: Use `Provider.of<T>(context, listen: false)` or `context.read<T>()` to trigger actions without rebuilding.
+*   **Responsive Layouts**: Use standard widgets like `Expanded`, `Flexible`, `LayoutBuilder`, or `AspectRatio` to ensure responsiveness on various screen sizes and devices.
+
+---
+
+## 5. Assets & Data Files
+*   **Assets Configuration**: All assets must be registered under `flutter.assets` in `pubspec.yaml`.
+*   **Text Data Paths**:
+    *   Suras: `assets/text/Suras/`
+    *   Hadeeth: `assets/text/Hadeeth/`
+    *   Azkar: `assets/text/azkar/`
+*   **Handling assets**: Always use `rootBundle.loadString()` safely to parse text files. Provide loaders (`loading_indicator.dart`) while the file content is being loaded.
+
+---
+
+## 6. Development Workflow Rules for AI Assistants
+1.  **Read Before Writing**: Check existing models/providers before creating duplicates.
+2.  **No Package Pollution**: Check `pubspec.yaml` dependencies before suggesting a new package. Prefer standard packages already imported (`http`, `shared_preferences`, `just_audio`).
+3.  **Run Static Analysis**: Ensure code resolves without warnings or lints by running static analyzer or checking errors.
+4.  **Preserve Code Context**: Do not erase existing comments, localization structures, or unrelated functions when refactoring.

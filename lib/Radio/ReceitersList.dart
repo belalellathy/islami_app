@@ -127,39 +127,48 @@ class _ReceiterslistState extends State<Receiterslist> {
     "الفلق",
     "الناس"
   ];
-  
+
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    return FutureBuilder(future: APIManager.getreciters(), builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return const Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasError) {
-        return Center(child: Text("Error: ${snapshot.error}"));
-      } else {
-        final reciters = snapshot.data!.reciters;
-        return ListView.separated(
-          separatorBuilder: (__, _) => const SizedBox(height: 10),
-          itemCount: reciters![args['index']]!.moshaf![0].surahTotal!,
-
-          itemBuilder: (context, index) {
-            
-            String formatedindex;
-            index = index + 1;
-            if(index<10){
-              formatedindex = index.toString().padLeft(3, '0');
-              print(formatedindex);
-            }else if(index<100){
-              formatedindex = index.toString().padLeft(2, '0');
-              print(formatedindex);
-            }
-              else{
-                formatedindex = "${index+1}";
-              }
-            return RadioTab(items(name: arabicsuranames[index-1], url: "${reciters[args['index']].moshaf![0].server}${formatedindex}.mp3"));
-          },
-        );
-      }
-    });
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    return FutureBuilder(
+        future: APIManager.getreciters(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error: ${snapshot.error}"));
+          } else {
+            final reciters = snapshot.data!.reciters;
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Receiters"),
+                centerTitle: true,
+              ),
+              body: ListView.separated(
+                separatorBuilder: (__, _) => const SizedBox(height: 10),
+                itemCount: reciters![args['index']]!.moshaf![0].surahTotal!,
+                itemBuilder: (context, index) {
+                  String formatedindex;
+                  index = index + 1;
+                  if (index < 10) {
+                    formatedindex = index.toString().padLeft(3, '0');
+                    print(formatedindex);
+                  } else if (index < 100) {
+                    formatedindex = index.toString().padLeft(2, '0');
+                    print(formatedindex);
+                  } else {
+                    formatedindex = "${index + 1}";
+                  }
+                  return RadioTab(items(
+                      name: arabicsuranames[index - 1],
+                      url:
+                          "${reciters[args['index']].moshaf![0].server}${formatedindex}.mp3"));
+                },
+              ),
+            );
+          }
+        });
   }
 }

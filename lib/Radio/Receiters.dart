@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/Radio/ReceitersList.dart';
+
 import 'package:islami_app/theme/apptheme.dart';
 
 class Receiters extends StatelessWidget {
