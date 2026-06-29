@@ -4,7 +4,7 @@ import 'package:islami_app/tabs/Quran/most_recent_suras.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class MostRecent extends StatefulWidget {
-  MostRecent(
+  const MostRecent(
       {super.key,
       required this.englishQuranSurahs,
       required this.arabicQuranSurahs,
@@ -21,7 +21,7 @@ class _MostRecentState extends State<MostRecent> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: MostRecentSuras.MostRecentSurasindex.isNotEmpty,
+      visible: MostRecentSuras.mostRecentSurasIndex.isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,17 +37,17 @@ class _MostRecentState extends State<MostRecent> {
             child: ListView.separated(
               itemBuilder: (_, index) => MostRecentItem(
                 arabicQuranSurahs: widget.arabicQuranSurahs[MostRecentSuras
-                    .MostRecentSurasindex.reversed
+                    .mostRecentSurasIndex.reversed
                     .toList()[index]],
                 englishQuranSurahs: widget.englishQuranSurahs[MostRecentSuras
-                    .MostRecentSurasindex.reversed
+                    .mostRecentSurasIndex.reversed
                     .toList()[index]],
-                ayat: widget.ayat[MostRecentSuras.MostRecentSurasindex.reversed
+                ayat: widget.ayat[MostRecentSuras.mostRecentSurasIndex.reversed
                     .toList()[index]],
-                index: MostRecentSuras.MostRecentSurasindex.reversed
+                index: MostRecentSuras.mostRecentSurasIndex.reversed
                     .toList()[index],
               ),
-              itemCount: MostRecentSuras.MostRecentSurasindex.length,
+              itemCount: MostRecentSuras.mostRecentSurasIndex.length,
               scrollDirection: Axis.horizontal,
               separatorBuilder: (_, __) => const SizedBox(width: 10),
             ),

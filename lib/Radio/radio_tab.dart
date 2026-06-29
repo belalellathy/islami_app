@@ -4,8 +4,8 @@ import 'package:islami_app/theme/apptheme.dart';
 import 'package:just_audio/just_audio.dart';
 
 class RadioTab extends StatefulWidget {
-  items item;
-  RadioTab(this.item, {super.key});
+  final RadioItem item;
+  const RadioTab(this.item, {super.key});
 
   @override
   State<RadioTab> createState() => _RadioTabState();

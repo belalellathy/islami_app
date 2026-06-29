@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_app/API_model/API_manger/api_manger.dart';
 import 'package:islami_app/API_model/prayerresponsemodel/prayerresponsemodel.dart';
-import 'package:islami_app/providers/LocationProvide.dart';
+import 'package:islami_app/providers/location_provider.dart';
 import 'package:islami_app/tabs/time/time_item.dart';
 import 'package:provider/provider.dart';
 
@@ -88,7 +88,7 @@ class _TimeState extends State<Time> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     AutoSizeText(
-                                      "${data.data!.date!.gregorian!.day!}-${editimogeo}\n${data.data!.date!.gregorian!.year!}",
+                                      "${data.data!.date!.gregorian!.day!}-$editimogeo\n${data.data!.date!.gregorian!.year!}",
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 17,
@@ -114,7 +114,7 @@ class _TimeState extends State<Time> {
                                       ],
                                     ),
                                     AutoSizeText(
-                                      "${data.data!.date!.hijri!.day!}-${editedmo}\n${data.data!.date!.hijri!.year!}",
+                                      "${data.data!.date!.hijri!.day!}-$editedmo\n${data.data!.date!.hijri!.year!}",
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 17,

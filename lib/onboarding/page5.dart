@@ -7,7 +7,7 @@ class Page5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: const Color(0xFF202020),
       body: Column(
         children: [
           Center(
@@ -18,17 +18,17 @@ class Page5 extends StatelessWidget {
           Image.asset(
             "assets/images/imageFrame 3.png",
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Holy Quran Radio",
             style: TextStyle(
                 color: Apptheme.primary,
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          Text(
+          const Text(
             "You can listen to the Holy Quran Radio\nthrough the application for free and easily",
             textAlign: TextAlign.center,
             style: TextStyle(

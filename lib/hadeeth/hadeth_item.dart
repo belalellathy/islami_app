@@ -5,10 +5,8 @@ import 'package:islami_app/hadeeth/hadeth_data.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class HadethItem extends StatefulWidget {
-  HadethItem({required this.no});
-
-  @override
-  int no;
+  final int no;
+  const HadethItem({super.key, required this.no});
 
   @override
   State<HadethItem> createState() => _HadethItemState();
@@ -17,6 +15,7 @@ class HadethItem extends StatefulWidget {
 class _HadethItemState extends State<HadethItem> {
   HadethData? hadethData;
 
+  @override
   Widget build(BuildContext context) {
     if (hadethData == null) {
       loadhadethfile();
@@ -24,7 +23,7 @@ class _HadethItemState extends State<HadethItem> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
           image: const DecorationImage(
               image: AssetImage(
@@ -49,7 +48,7 @@ class _HadethItemState extends State<HadethItem> {
                       ),
                       Expanded(
                           child: Text(
-                        "${hadethData!.title}",
+                        hadethData!.title,
                         style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -65,7 +64,7 @@ class _HadethItemState extends State<HadethItem> {
                   Expanded(
                       child: ListView.separated(
                           itemBuilder: (_, index) => Text(
-                                "${hadethData!.content[index]}",
+                                hadethData!.content[index],
                                 textAlign: TextAlign.center,
                               ),
                           separatorBuilder: (_, __) => const SizedBox(
@@ -83,9 +82,9 @@ class _HadethItemState extends State<HadethItem> {
   }
 
   Future<void> loadhadethfile() async {
-    String hadeeth_content = await rootBundle
+    String hadeethContent = await rootBundle
         .loadString("assets/text/Hadeeth/h${widget.no + 1}.txt");
-    List<String> hadeethline = hadeeth_content.split("\n");
+    List<String> hadeethline = hadeethContent.split("\n");
     String title = hadeethline[0];
     hadeethline.removeAt(0);
     List<String> content = hadeethline;

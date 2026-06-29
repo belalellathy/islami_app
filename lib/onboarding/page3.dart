@@ -7,7 +7,7 @@ class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: const Color(0xFF202020),
       body: Column(
         children: [
           Center(
@@ -20,17 +20,17 @@ class Page3 extends StatelessWidget {
             color: Apptheme.primary,
             height: MediaQuery.sizeOf(context).height * 0.55,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Reading the Quran",
             style: TextStyle(
                 color: Apptheme.primary,
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          Text(
+          const Text(
             "Read, and your Lord is the Most Generous",
             style: TextStyle(
                 color: Apptheme.primary,

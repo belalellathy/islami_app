@@ -7,7 +7,7 @@ class Page4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: const Color(0xFF202020),
       body: Column(
         children: [
           Center(
@@ -18,17 +18,17 @@ class Page4 extends StatelessWidget {
           Image.asset(
             "assets/images/Frame 3 copy.png",
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Bearish",
             style: TextStyle(
                 color: Apptheme.primary,
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          Text(
+          const Text(
             "Praise the name of your Lord, the Most High",
             style: TextStyle(
                 color: Apptheme.primary,

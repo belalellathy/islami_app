@@ -247,7 +247,7 @@ class _QuranState extends State<Quran> {
     "An-Nas"
   ];
 
-  List<String> AyaNumber = [
+  List<String> ayaNumber = [
     '7',
     '286',
     '200',
@@ -369,7 +369,7 @@ class _QuranState extends State<Quran> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
-        color: Apptheme.black.withOpacity(0.7),
+        color: Apptheme.black.withValues(alpha: 0.7),
         child: Column(
           children: [
             Container(
@@ -414,7 +414,7 @@ class _QuranState extends State<Quran> {
                       MostRecent(
                         englishQuranSurahs: englishQuranSurahs,
                         arabicQuranSurahs: arabicsuranames,
-                        ayat: AyaNumber,
+                        ayat: ayaNumber,
                       ),
                       const SizedBox(
                         height: 20,
@@ -443,23 +443,23 @@ class _QuranState extends State<Quran> {
                                               arguments: index);
 
                                           if (!MostRecentSuras
-                                                      .MostRecentSurasindex
+                                                      .mostRecentSurasIndex
                                                   .contains(index) &&
                                               MostRecentSuras
-                                                      .MostRecentSurasindex
+                                                      .mostRecentSurasIndex
                                                       .length <
                                                   5) {
-                                            MostRecentSuras.MostRecentSurasindex
+                                            MostRecentSuras.mostRecentSurasIndex
                                                 .add(index);
                                             MostRecentSuras
                                                 .saveMostRecentSuras();
                                           } else if (MostRecentSuras
-                                                  .MostRecentSurasindex
+                                                  .mostRecentSurasIndex
                                                   .length ==
                                               5) {
-                                            MostRecentSuras.MostRecentSurasindex
+                                            MostRecentSuras.mostRecentSurasIndex
                                                 .clear();
-                                            MostRecentSuras.MostRecentSurasindex
+                                            MostRecentSuras.mostRecentSurasIndex
                                                 .add(index);
                                             MostRecentSuras
                                                 .saveMostRecentSuras();
@@ -493,7 +493,7 @@ class _QuranState extends State<Quran> {
                                                         color: Apptheme.white,
                                                         fontSize: 16)),
                                                 Text(
-                                                    "${AyaNumber[index]}verses",
+                                                    "${ayaNumber[index]}verses",
                                                     style: const TextStyle(
                                                         color: Apptheme.white,
                                                         fontSize: 16))

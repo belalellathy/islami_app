@@ -245,7 +245,7 @@ class _SuraDetailState extends State<SuraDetail> {
     "An-Nas"
   ];
 
-  List<String> AyaNumber = [
+  List<String> ayaNumber = [
     '7',
     '286',
     '200',
@@ -362,7 +362,7 @@ class _SuraDetailState extends State<SuraDetail> {
     '6'
   ];
 
-  List<String> Ayat = [];
+  List<String> ayat = [];
 
   late int no;
 
@@ -371,7 +371,7 @@ class _SuraDetailState extends State<SuraDetail> {
     int numm = ModalRoute.of(context)!.settings.arguments as int;
 
     no = numm;
-    if (Ayat.isEmpty) {
+    if (ayat.isEmpty) {
       loadfile();
     }
     return Scaffold(
@@ -399,17 +399,17 @@ class _SuraDetailState extends State<SuraDetail> {
             ),
             Expanded(
                 flex: 22,
-                child: Ayat.isEmpty
+                child: ayat.isEmpty
                     ? const LoadingIndicator()
                     : ListView.separated(
                         separatorBuilder: (_, __) => const SizedBox(
                               height: 10,
                             ),
-                        itemCount: Ayat.length,
+                        itemCount: ayat.length,
                         itemBuilder: (_, index) => Padding(
                               padding: const EdgeInsets.only(right: 16),
                               child: Text(
-                                "${Ayat[index]}[${index + 1}]",
+                                "${ayat[index]}[${index + 1}]",
                                 style: const TextStyle(color: Apptheme.primary),
                                 textAlign: TextAlign.center,
                               ),
@@ -429,8 +429,7 @@ class _SuraDetailState extends State<SuraDetail> {
   Future<void> loadfile() async {
     String sura =
         await rootBundle.loadString("assets/text/Suras/${no + 1}.txt");
-    Ayat = sura.split("\r\n");
-    print(Ayat.length);
+    ayat = sura.split("\r\n");
     setState(() {});
   }
 }

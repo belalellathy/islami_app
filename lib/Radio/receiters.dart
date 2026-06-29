@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class Receiters extends StatelessWidget {
-  String name;
-  int index;
-   Receiters({super.key, required this.name, required this.index});
+  final String name;
+  final int index;
+  const Receiters({super.key, required this.name, required this.index});
 
   @override
   Widget build(BuildContext context) {

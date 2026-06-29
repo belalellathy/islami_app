@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/API_model/API_manger/api_manger.dart';
 import 'package:islami_app/API_model/radioresponsemodel/radioresponsemodel.dart';
 import 'package:islami_app/API_model/receitersresponsemodel/receitersresponsemodel.dart';
-import 'package:islami_app/Radio/Receiters.dart';
+import 'package:islami_app/Radio/receiters.dart';
 import 'package:islami_app/Radio/item.dart';
 import 'package:islami_app/Radio/radio_tab.dart';
 import 'package:islami_app/theme/apptheme.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class radio extends StatefulWidget {
-  const radio({super.key});
+class RadioScreen extends StatefulWidget {
+  const RadioScreen({super.key});
 
   @override
-  State<radio> createState() => _radioState();
+  State<RadioScreen> createState() => _RadioScreenState();
 }
 
-class _radioState extends State<radio> {
+class _RadioScreenState extends State<RadioScreen> {
   int? selectedindex = 0;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _radioState extends State<radio> {
           totalSwitches: 2,
           labels: const ["Radio", "Reciters"],
           activeBgColor: const [Apptheme.primary],
-          inactiveBgColor: Apptheme.black.withOpacity(0.7),
+          inactiveBgColor: Apptheme.black.withValues(alpha: 0.7),
           fontSize: 16,
           inactiveFgColor: Colors.white,
           activeFgColor: Colors.black,
@@ -69,7 +69,7 @@ class _radioState extends State<radio> {
                           ),
                           itemCount: radios!.length,
                           itemBuilder: (context, index) {
-                            return RadioTab(items(
+                            return RadioTab(RadioItem(
                                 name: radios[index].name!,
                                 url: radios[index].url!));
                           },

@@ -7,7 +7,7 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: const Color(0xFF202020),
       body: Column(
         children: [
           Center(
@@ -18,10 +18,10 @@ class Page1 extends StatelessWidget {
           Image.asset(
             "assets/images/Frame 3.png",
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
-          Text(
+          const Text(
             "Welcome to Islamii App",
             style: TextStyle(
                 color: Apptheme.primary,

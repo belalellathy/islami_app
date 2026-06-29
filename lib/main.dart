@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/Radio/ReceitersList.dart';
+import 'package:islami_app/Radio/receiters_list.dart';
 import 'package:islami_app/home.dart';
 import 'package:islami_app/onboarding/pageview.dart';
 import 'package:islami_app/onboarding/saveonboarding.dart';
-import 'package:islami_app/providers/LocationProvide.dart';
+import 'package:islami_app/providers/location_provider.dart';
 import 'package:islami_app/tabs/Quran/most_recent_suras.dart';
 import 'package:islami_app/tabs/Quran/sura_detail.dart';
 import 'package:islami_app/theme/apptheme.dart';
@@ -36,7 +36,7 @@ class Run extends StatelessWidget {
         "Home": (context) => const Home(),
         "Suradetail": (context) => const SuraDetail(),
         "receiterslist": (context) => const Receiterslist(),
-        "pageview": (context) => Pageview(),
+        "pageview": (context) => const Pageview(),
       },
       theme: Apptheme.darkTheme,
       themeMode: ThemeMode.dark,

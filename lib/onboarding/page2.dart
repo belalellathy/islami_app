@@ -7,7 +7,7 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: const Color(0xFF202020),
       body: Column(
         children: [
           Center(
@@ -18,17 +18,17 @@ class Page2 extends StatelessWidget {
           Image.asset(
             "assets/images/Frame 2.png",
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          Text(
+          const Text(
             "Welcome to Islami",
             style: TextStyle(
                 color: Apptheme.primary,
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          Text("We Are Very Excited To Have You In Our Community",
+          const Text("We Are Very Excited To Have You In Our Community",
               style: TextStyle(
                   color: Apptheme.primary,
                   fontSize: 16,

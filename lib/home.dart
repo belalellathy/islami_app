@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
     const Quran(),
     const Hadeth(),
     const Sebha(),
-    const radio(),
+    const RadioScreen(),
     const Time()
   ];
   List<String> images = [
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 12),
                       decoration: BoxDecoration(
-                          color: Apptheme.black.withOpacity(0.5),
+                          color: Apptheme.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(66)),
                       child: SvgPicture.asset("assets/icons/Vector.svg",
                           colorFilter: const ColorFilter.mode(
@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 12),
                       decoration: BoxDecoration(
-                          color: Apptheme.black.withOpacity(0.5),
+                          color: Apptheme.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(66)),
                       child: SvgPicture.asset(
                           "assets/icons/book-album-svgrepo-com 1.svg",
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 12),
                       decoration: BoxDecoration(
-                          color: Apptheme.black.withOpacity(0.5),
+                          color: Apptheme.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(66)),
                       child: SvgPicture.asset(
                           "assets/icons/necklace-islam-svgrepo-com 1.svg",
@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 12),
                       decoration: BoxDecoration(
-                          color: Apptheme.black.withOpacity(0.5),
+                          color: Apptheme.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(66)),
                       child: SvgPicture.asset(
                           "assets/icons/radio-svgrepo-com 1.svg",
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 12),
                       decoration: BoxDecoration(
-                          color: Apptheme.black.withOpacity(0.5),
+                          color: Apptheme.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(66)),
                       child: SvgPicture.asset("assets/icons/Vector-1.svg",
                           colorFilter: const ColorFilter.mode(

@@ -148,23 +148,21 @@ class _ReceiterslistState extends State<Receiterslist> {
               ),
               body: ListView.separated(
                 separatorBuilder: (__, _) => const SizedBox(height: 10),
-                itemCount: reciters![args['index']]!.moshaf![0].surahTotal!,
+                itemCount: reciters![args['index']].moshaf![0].surahTotal!,
                 itemBuilder: (context, index) {
                   String formatedindex;
                   index = index + 1;
                   if (index < 10) {
                     formatedindex = index.toString().padLeft(3, '0');
-                    print(formatedindex);
                   } else if (index < 100) {
                     formatedindex = index.toString().padLeft(2, '0');
-                    print(formatedindex);
                   } else {
                     formatedindex = "${index + 1}";
                   }
-                  return RadioTab(items(
+                  return RadioTab(RadioItem(
                       name: arabicsuranames[index - 1],
                       url:
-                          "${reciters[args['index']].moshaf![0].server}${formatedindex}.mp3"));
+                          "${reciters[args['index']].moshaf![0].server}$formatedindex.mp3"));
                 },
               ),
             );

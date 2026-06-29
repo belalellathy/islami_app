@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class MostRecentItem extends StatelessWidget {
-  MostRecentItem(
-      {super.key,
-      required this.englishQuranSurahs,
-      required this.arabicQuranSurahs,
-      required this.ayat,
-      required this.index});
-  String englishQuranSurahs, arabicQuranSurahs, ayat;
-  int index;
+  const MostRecentItem({
+    super.key,
+    required this.englishQuranSurahs,
+    required this.arabicQuranSurahs,
+    required this.ayat,
+    required this.index,
+  });
+  final String englishQuranSurahs, arabicQuranSurahs, ayat;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return InkWell(

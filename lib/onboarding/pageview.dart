@@ -8,7 +8,7 @@ import 'package:islami_app/onboarding/saveonboarding.dart';
 import 'package:islami_app/theme/apptheme.dart';
 
 class Pageview extends StatefulWidget {
-  Pageview({super.key});
+  const Pageview({super.key});
 
   @override
   State<Pageview> createState() => _PageviewState();

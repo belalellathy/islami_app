@@ -51,8 +51,6 @@ class Locationprovider with ChangeNotifier {
       city = place.subAdministrativeArea ?? '';
       country = place.country ?? '';
       street = place.street ?? " ";
-      print(street);
     }
-    print(city);
   }
 }
